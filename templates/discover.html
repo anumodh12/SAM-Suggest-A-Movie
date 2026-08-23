@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discover — SAM</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            SAM<span>.</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/discover">Discover</a>
+            <a href="/recommendations-page">
+                Recommendations
+            </a>
+        </div>
+
+    </nav>
+
+
+    <main class="discover-page">
+
+        <div class="discover-header">
+
+            <p class="eyebrow">
+                TELL SAM WHAT YOU LIKE
+            </p>
+
+            <h1>
+                Find your
+                <span>next movie.</span>
+            </h1>
+
+            <p>
+                Swipe right if you'd watch it.
+                Swipe left if it's not for you.
+            </p>
+
+        </div>
+
+
+        <!--
+            TEST COMPLETE STATE
+
+            This is hidden normally.
+            swipe.js can show it when all 20
+            movies have been rated.
+        -->
+
+        <div
+            id="test-complete"
+            class="test-complete"
+            style="display: none;"
+        >
+
+            <h2>
+                You're all caught up.
+            </h2>
+
+            <p>
+                SAM has learned enough about your taste.
+            </p>
+
+            <a
+                href="/recommendations-page"
+                class="recommendations-button"
+            >
+                See My Recommendations
+            </a>
+
+        </div>
+
+
+        <div
+            id="swipe-container"
+            class="swipe-area"
+        >
+
+            <div
+                id="movie-card"
+                class="swipe-card"
+                data-movie-id=""
+            >
+
+                <div
+                    class="movie-poster"
+                    id="movie-poster"
+                >
+
+                    <div class="poster-overlay">
+
+                        <div class="movie-rating">
+
+                            ⭐
+
+                            <span id="movie-rating">
+                                -
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="movie-details">
+
+                    <div>
+
+                        <h2 id="movie-title">
+                            Loading...
+                        </h2>
+
+                        <p
+                            class="movie-meta"
+                            id="movie-meta"
+                        >
+                            Loading movie...
+                        </p>
+
+                    </div>
+
+
+                    <p
+                        class="movie-description"
+                        id="movie-description"
+                    >
+                        Loading...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="swipe-buttons">
+
+                <button
+                    type="button"
+                    id="dislike-button"
+                    class="swipe-button dislike"
+                    aria-label="Dislike"
+                >
+                    ✕
+                </button>
+
+
+                <button
+                    type="button"
+                    id="like-button"
+                    class="swipe-button like"
+                    aria-label="Like"
+                >
+                    ♥
+                </button>
+
+            </div>
+
+
+            <p class="swipe-hint">
+                ← Not for me &nbsp;&nbsp;&nbsp; Like →
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!--
+        IMPORTANT:
+
+        Flask sends the complete discovery movie list
+        to JavaScript.
+
+        JavaScript controls which movie is currently
+        displayed and moves to the next movie after
+        every successful swipe.
+    -->
+
+    <script>
+    const movies = {{ movies | tojson }};
+    const testComplete = {{ test_complete | default(false) | tojson }};
+    </script>
+
+
+    <script
+        src="{{ url_for('static', filename='js/swipe.js') }}"
+    ></script>
+
+</body>
+
+</html>

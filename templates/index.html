@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>SAM — Suggest A Movie</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+```
+
+</head>
+
+<body>
+
+```
+<nav class="navbar">
+    <div class="logo">SAM<span>.</span></div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('start_test') }}">Discover</a>
+        <a href="{{ url_for('recommendations_page') }}">Recommendations</a>
+    </div>
+</nav>
+
+<main class="hero">
+
+    <section class="hero-content">
+
+        <p class="eyebrow">YOUR PERSONAL MOVIE MATCHMAKER</p>
+
+        <h1>
+            Don't know what to watch?
+            <span>Let SAM learn your taste.</span>
+        </h1>
+
+        <p class="description">
+            Swipe through movies you love or hate.
+            SAM learns what makes your movie taste unique
+            and finds something you'll actually want to watch.
+        </p>
+
+        <a href="{{ url_for('start_test') }}" class="start-button">
+            Start Discovering
+            <span>→</span>
+        </a>
+
+    </section>
+
+    <section class="movie-preview">
+
+        <div class="movie-card">
+
+            <div class="poster-placeholder">
+                <div class="poster-content">
+                    <small>YOUR NEXT</small>
+                    <strong>MOVIE</strong>
+                </div>
+            </div>
+
+            <div class="movie-info">
+                <div>
+                    <h2>Find your next favorite.</h2>
+                    <p>Swipe. Discover. Watch.</p>
+                </div>
+
+                <div class="heart">
+                    ♥
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 SAM — Suggest A Movie</p>
+</footer>
+```
+
+</body>
+</html>

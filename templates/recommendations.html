@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommendations — SAM</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            SAM<span>.</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/start-test">
+                Discover
+            </a>
+
+            <a href="/recommendations-page">
+                Recommendations
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="recommendations-page">
+
+        <div class="recommendations-header">
+
+            <p class="eyebrow">
+                MADE FOR YOU
+            </p>
+
+            <h1>
+                Your next
+                <span>favorite.</span>
+            </h1>
+
+            <p>
+                SAM selected this movie based on your taste.
+            </p>
+
+        </div>
+
+
+        <!-- SELECTED MOVIE -->
+
+        <section
+            id="featured-movie"
+            class="featured-movie"
+        ></section>
+
+
+        <!-- OTHER MOVIES -->
+
+        <section class="other-recommendations">
+
+            <div class="section-title">
+
+                <h2>
+                    More recommendations
+                </h2>
+
+            </div>
+
+
+            <div
+                id="recommendations-grid"
+                class="recommendations-grid"
+            >
+
+                <p>
+                    Finding movies for you...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        let recommendations = [];
+
+        let selectedMovieIndex = 0;
+
+
+        const featuredMovie =
+            document.getElementById(
+                "featured-movie"
+            );
+
+        const recommendationsGrid =
+            document.getElementById(
+                "recommendations-grid"
+            );
+
+
+        async function loadRecommendations() {
+
+            try {
+
+                const response =
+                    await fetch("/recommendations");
+
+                const data =
+                    await response.json();
+
+                recommendations =
+                    data.recommendations || [];
+
+
+                // --------------------------------------------------
+                // NO RECOMMENDATIONS
+                // --------------------------------------------------
+
+                if (recommendations.length === 0) {
+
+                    const retakeRequired =
+                        data.retake_required === true ||
+                        data.no_matches === true ||
+                        data.all_disliked === true;
+
+                    if (retakeRequired) {
+
+                        featuredMovie.innerHTML = `
+                            <div class="empty-recommendations">
+
+                                <h2>
+                                    SAM couldn't find a good match.
+                                </h2>
+
+                                <p>
+                                    You disliked all the movies in this test.
+                                    Let's try a completely new set of movies
+                                    and learn more about your taste.
+                                </p>
+
+                                <a href="/start-test">
+                                    Retake Test
+                                </a>
+
+                            </div>
+                        `;
+
+                    } else {
+
+                        featuredMovie.innerHTML = `
+                            <div class="empty-recommendations">
+
+                                <h2>
+                                    SAM needs to learn your taste.
+                                </h2>
+
+                                <p>
+                                    Like a few movies first and
+                                    your recommendations will appear here.
+                                </p>
+
+                                <a href="/discover">
+                                    Start discovering
+                                </a>
+
+                            </div>
+                        `;
+
+                    }
+
+                    recommendationsGrid.innerHTML = "";
+
+                    return;
+                }
+
+
+                selectedMovieIndex = 0;
+
+                showSelectedMovie();
+
+                showOtherMovies();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Recommendation error:",
+                    error
+                );
+
+                featuredMovie.innerHTML = `
+                    <div class="empty-recommendations">
+
+                        <h2>
+                            Something went wrong.
+                        </h2>
+
+                        <p>
+                            SAM couldn't load your recommendations.
+                        </p>
+
+                        <a href="/recommendations-page">
+                            Try Again
+                        </a>
+
+                    </div>
+                `;
+
+            }
+
+        }
+
+        function showSelectedMovie() {
+
+            const movie =
+                recommendations[
+                    selectedMovieIndex
+                ];
+
+
+            const poster =
+                movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
+                    : "";
+
+
+            const year =
+                movie.release_date
+                    ? movie.release_date.substring(0, 4)
+                    : "Unknown";
+
+
+            featuredMovie.innerHTML = `
+
+                <div
+                    class="featured-poster"
+                    style="
+                        background-image:
+                        url('${poster}');
+                    "
+                ></div>
+
+
+                <div class="featured-details">
+
+                    <p class="featured-label">
+                        SAM'S TOP PICK
+                    </p>
+
+
+                    <h2>
+                        ${movie.title || "Unknown Movie"}
+                    </h2>
+
+
+                    <div class="featured-meta">
+
+                        <span>
+                            ${year}
+                        </span>
+
+                        <span>
+                            ⭐
+                            ${
+                                movie.rating
+                                    ? Number(movie.rating).toFixed(1)
+                                    : "N/A"
+                            }
+                        </span>
+
+                    </div>
+
+
+                    <p class="featured-description">
+                        ${
+                            movie.overview ||
+                            "No description available."
+                        }
+                    </p>
+
+
+                    <div class="featured-score">
+
+                        SAM MATCH
+
+                        <strong>
+                            ${movie.score || 0}
+                        </strong>
+
+                    </div>
+
+                    <div class="recommendation-actions">
+                        <p class="retake-test-hint">
+                            Already seen it or not your type?
+                        </p>
+
+                        <a href="/start-test" class="retake-test-button">
+                            Retake Test
+                        </a>
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        function showOtherMovies() {
+
+            recommendationsGrid.innerHTML = "";
+
+
+            recommendations.forEach(
+                (movie, index) => {
+
+                    /*
+                     * Don't show the selected movie
+                     * in the smaller list.
+                     */
+
+                    if (
+                        index === selectedMovieIndex
+                    ) {
+                        return;
+                    }
+
+
+                    const card =
+                        document.createElement("div");
+
+
+                    card.className =
+                        "recommendation-card";
+
+
+                    const poster =
+                        movie.poster_path
+                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                            : "";
+
+
+                    const year =
+                        movie.release_date
+                            ? movie.release_date.substring(0, 4)
+                            : "Unknown";
+
+
+                    card.innerHTML = `
+
+                        <div
+                            class="recommendation-poster"
+                            style="
+                                background-image:
+                                url('${poster}');
+                            "
+                        ></div>
+
+
+                        <div class="recommendation-info">
+
+                            <h3>
+                                ${movie.title || "Unknown Movie"}
+                            </h3>
+
+                            <div class="recommendation-meta">
+
+                                <span>
+                                    ${year}
+                                </span>
+
+                                <span>
+                                    ⭐
+                                    ${
+                                        movie.rating
+                                            ? Number(movie.rating).toFixed(1)
+                                            : "N/A"
+                                    }
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    card.addEventListener(
+                        "click",
+                        () => {
+
+                            selectedMovieIndex =
+                                index;
+
+
+                            showSelectedMovie();
+
+                            showOtherMovies();
+
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            });
+
+                        }
+                    );
+
+
+                    recommendationsGrid.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        loadRecommendations();
+
+    </script>
+
+</body>
+
+</html>
