@@ -2643,6 +2643,18 @@ def clear_current_test():
     })
 
 
+
+
+
+
+
+
+
+@app.route("/credits")
+def credits():
+    return render_template("credits.html")
+
+
 # ============================================================
 # APPLICATION START
 # ============================================================

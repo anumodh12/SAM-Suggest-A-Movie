@@ -1,0 +1,179 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Credits — SAM</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="{{ url_for('home') }}" class="logo">
+        SAM<span>.</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('start_test') }}">Discover</a>
+        <a href="{{ url_for('recommendations_page') }}">
+            Recommendations
+        </a>
+    </div>
+
+</nav>
+
+
+<main class="credits-page">
+
+    <section class="credits-hero">
+
+        <p class="eyebrow">
+            THE PERSON BEHIND SAM
+        </p>
+
+        <h1>
+            Meet the creator.
+            <span>ANUMODH ANTONY.</span>
+        </h1>
+
+        <p class="credits-intro">
+            Thanks for visiting SAM.
+        </p>
+
+    </section>
+
+
+    <section class="creator-card">
+
+        <div class="creator-photo-wrapper">
+
+            <img
+                src="{{ url_for('static', filename='images/anumodh.jpg') }}"
+                alt="ANUMODH ANTONY"
+                class="creator-photo"
+            >
+
+        </div>
+
+
+        <div class="creator-info">
+
+            <p class="creator-label">
+                CREATED & DEVELOPED BY
+            </p>
+
+            <h2>
+                ANUMODH ANTONY
+            </h2>
+
+            <p>
+                Creator of SAM — Suggest A Movie.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="credits-cta">
+
+        <p class="section-kicker">
+            NOW, LET SAM CHOOSE
+        </p>
+
+        <h2>
+            Find something
+            <span>you'll love.</span>
+        </h2>
+
+        <p>
+            Tell SAM what you like and discover your next movie.
+        </p>
+
+        <div class="hero-actions">
+
+            <a
+                href="{{ url_for('start_test') }}"
+                class="start-button"
+            >
+                Start Discovering
+                <span>→</span>
+            </a>
+
+            <a
+                href="{{ url_for('home') }}"
+                class="secondary-button"
+            >
+                Back Home
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-brand">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            SAM<span>.</span>
+        </a>
+
+        <p>
+            Suggest A Movie
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('start_test') }}">
+            Discover
+        </a>
+
+        <a href="{{ url_for('recommendations_page') }}">
+            Recommendations
+        </a>
+
+        <a href="{{ url_for('credits') }}">
+            Credits
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 SAM — Suggest A Movie
+        </p>
+
+        <p>
+            Created by ANUMODH ANTONY
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
+```

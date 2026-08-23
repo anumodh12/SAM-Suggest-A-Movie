@@ -1,90 +1,363 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>SAM — Suggest A Movie</title>
+    <meta
+        name="description"
+        content="SAM — Suggest A Movie. Discover movies based on your personal taste."
+    >
 
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
->
-```
+    <title>SAM — Suggest A Movie</title>
 
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 </head>
 
 <body>
 
-```
-<nav class="navbar">
-    <div class="logo">SAM<span>.</span></div>
+    <!-- Background atmosphere -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
 
-    <div class="nav-links">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('start_test') }}">Discover</a>
-        <a href="{{ url_for('recommendations_page') }}">Recommendations</a>
-    </div>
-</nav>
+    <!-- Navigation -->
+    <nav class="navbar">
 
-<main class="hero">
-
-    <section class="hero-content">
-
-        <p class="eyebrow">YOUR PERSONAL MOVIE MATCHMAKER</p>
-
-        <h1>
-            Don't know what to watch?
-            <span>Let SAM learn your taste.</span>
-        </h1>
-
-        <p class="description">
-            Swipe through movies you love or hate.
-            SAM learns what makes your movie taste unique
-            and finds something you'll actually want to watch.
-        </p>
-
-        <a href="{{ url_for('start_test') }}" class="start-button">
-            Start Discovering
-            <span>→</span>
+        <a href="{{ url_for('home') }}" class="logo">
+            SAM<span>.</span>
         </a>
 
-    </section>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="active">
+                Home
+            </a>
 
-    <section class="movie-preview">
+            <a href="{{ url_for('start_test') }}">
+                Discover
+            </a>
 
-        <div class="movie-card">
+            <a href="{{ url_for('recommendations_page') }}">
+                My Matches
+            </a>
+        </div>
 
-            <div class="poster-placeholder">
-                <div class="poster-content">
-                    <small>YOUR NEXT</small>
-                    <strong>MOVIE</strong>
+        <a href="{{ url_for('start_test') }}" class="nav-cta">
+            Find a Movie
+        </a>
+
+    </nav>
+
+
+    <!-- Main Hero -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    PERSONALIZED MOVIE DISCOVERY
                 </div>
+
+                <h1>
+                    Stop searching.
+                    <span>Start discovering.</span>
+                </h1>
+
+                <p class="description">
+                    Tell SAM what you love, what you hate, and what you
+                    have already seen. Your movie taste becomes the map.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="{{ url_for('start_test') }}"
+                        class="start-button"
+                    >
+                        Start discovering
+                        <span>→</span>
+                    </a>
+
+                    <a
+                        href="{{ url_for('recommendations_page') }}"
+                        class="secondary-button"
+                    >
+                        View my matches
+                    </a>
+
+                </div>
+
+                <div class="hero-note">
+                    <span>✦</span>
+                    No endless scrolling. Just movies that fit you.
+                </div>
+
             </div>
 
-            <div class="movie-info">
-                <div>
-                    <h2>Find your next favorite.</h2>
-                    <p>Swipe. Discover. Watch.</p>
+
+            <!-- Movie Preview -->
+            <div class="movie-preview">
+
+                <div class="preview-orbit orbit-one"></div>
+                <div class="preview-orbit orbit-two"></div>
+
+                <div class="movie-card">
+
+                    <div class="movie-card-top">
+
+                        <span class="movie-label">
+                            SAM PICK
+                        </span>
+
+                        <span class="movie-score">
+                            <span>★</span> 94% MATCH
+                        </span>
+
+                    </div>
+
+                    <div class="poster-placeholder">
+
+                        <div class="poster-overlay"></div>
+
+                        <div class="poster-content">
+
+                            <span class="poster-kicker">
+                                YOUR NEXT
+                            </span>
+
+                            <strong>
+                                MOVIE
+                            </strong>
+
+                            <span class="poster-line"></span>
+
+                            <small>
+                                DISCOVER SOMETHING<br>
+                                YOU'LL ACTUALLY LOVE
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="movie-info">
+
+                        <div>
+
+                            <span class="movie-category">
+                                PERSONALIZED DISCOVERY
+                            </span>
+
+                            <h2>
+                                Find your next favorite.
+                            </h2>
+
+                            <p>
+                                Swipe. Discover. Watch.
+                            </p>
+
+                        </div>
+
+                        <div class="heart">
+                            ♥
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="heart">
-                    ♥
-                </div>
             </div>
+
+        </section>
+
+
+        <!-- Why SAM -->
+        <section class="why-sam">
+
+            <div class="section-heading">
+
+                <span class="section-kicker">
+                    HOW SAM WORKS
+                </span>
+
+                <h2>
+                    Your taste.
+                    <span>Understood.</span>
+                </h2>
+
+                <p>
+                    SAM learns from your reactions instead of making
+                    random guesses.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        01
+                    </div>
+
+                    <div class="feature-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Tell us your taste
+                    </h3>
+
+                    <p>
+                        Swipe through movies and tell SAM what you
+                        like and dislike.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card featured">
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <div class="feature-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        SAM learns
+                    </h3>
+
+                    <p>
+                        Your choices help build a picture of your
+                        unique movie preferences.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <div class="feature-icon">
+                        ↗
+                    </div>
+
+                    <h3>
+                        Get your match
+                    </h3>
+
+                    <p>
+                        Receive a movie recommendation designed
+                        around your taste.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+
+            <div class="final-cta-inner">
+
+                <span class="section-kicker">
+                    READY?
+                </span>
+
+                <h2>
+                    Your next great movie
+                    <span>is waiting.</span>
+                </h2>
+
+                <p>
+                    Give SAM a few choices and let your taste
+                    do the rest.
+                </p>
+
+                <a
+                    href="{{ url_for('start_test') }}"
+                    class="start-button"
+                >
+                    Take the taste test
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-brand">
+
+            <a href="{{ url_for('home') }}" class="logo">
+                SAM<span>.</span>
+            </a>
+
+            <p>
+                Suggest A Movie
+            </p>
 
         </div>
 
-    </section>
 
-</main>
+        <div class="footer-links">
 
-<footer>
-    <p>© 2026 SAM — Suggest A Movie</p>
-</footer>
-```
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('start_test') }}">
+                Discover
+            </a>
+
+            <a href="{{ url_for('recommendations_page') }}">
+                My Matches
+            </a>
+
+            <!--
+                Add a Flask endpoint called "credits"
+                when you create the credits page.
+            -->
+            <a href="{{ url_for('credits') }}">
+                About & Credits
+            </a>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 SAM — Suggest A Movie
+            </p>
+
+            <span>
+                Made for movie lovers.
+            </span>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
