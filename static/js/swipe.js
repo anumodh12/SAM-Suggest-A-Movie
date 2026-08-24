@@ -11,6 +11,8 @@ const moviePoster = document.getElementById("movie-poster");
 
 const likeButton = document.getElementById("like-button");
 const dislikeButton = document.getElementById("dislike-button");
+const veryLikeButton = document.getElementById("very-like-button");
+const notSeenButton = document.getElementById("not-seen-button");
 
 
 // --------------------------------------------------
@@ -356,6 +358,7 @@ showMovie();
 
 
 
+
 function showTestComplete() {
 
     movieCard.innerHTML = `
@@ -392,9 +395,38 @@ function showTestComplete() {
     `;
 
 
+    // Hide all swipe buttons
     likeButton.style.display = "none";
     dislikeButton.style.display = "none";
+
+    if (veryLikeButton) {
+        veryLikeButton.style.display = "none";
+    }
+
+    if (notSeenButton) {
+        notSeenButton.style.display = "none";
+    }
+
+
+    // Hide the directional labels
+    document
+        .querySelectorAll(".swipe-label")
+        .forEach(function(label) {
+
+            label.style.display = "none";
+
+        });
+
+
+    // Hide the swipe instruction at the bottom
+    const swipeHint =
+        document.querySelector(".swipe-hint");
+
+    if (swipeHint) {
+        swipeHint.style.display = "none";
+    }
 }
+
 
 
 
@@ -414,6 +446,24 @@ dislikeButton.addEventListener(
     "click",
     () => chooseMovie("dislike")
 );
+
+if (veryLikeButton) {
+
+    veryLikeButton.addEventListener(
+        "click",
+        () => chooseMovie("very-like")
+    );
+}
+
+
+if (notSeenButton) {
+
+    notSeenButton.addEventListener(
+        "click",
+        () => chooseMovie("not-seen")
+    );
+}
+
 
 
 // --------------------------------------------------
@@ -504,11 +554,16 @@ function dragMove(event) {
 
 
     const rotation =
-        currentX * 0.05;
+    Math.max(
+        -12,
+        Math.min(
+            12,
+            currentX * 0.045
+        )
+    );
 
-
-    movieCard.style.transform =
-        `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg)`;
+movieCard.style.transform =
+    `translate3d(${currentX}px, ${currentY}px, 0) rotate(${rotation}deg)`;
 }
 
 
@@ -543,14 +598,24 @@ function endDrag() {
     // Not far enough → return to center
 
     if (
-        horizontalDistance < threshold &&
-        verticalDistance < threshold
-    ) {
+    horizontalDistance < threshold &&
+    verticalDistance < threshold
+) {
 
-        movieCard.style.transform = "";
+    movieCard.style.transition =
+        "transform 380ms cubic-bezier(0.22, 1, 0.36, 1)";
 
-        return;
-    }
+    movieCard.style.transform =
+        "translate3d(0, 0, 0)";
+
+    setTimeout(() => {
+
+        movieCard.style.transition = "";
+
+    }, 380);
+
+    return;
+}
 
 
     // Determine dominant direction
@@ -600,3 +665,4 @@ if (testComplete) {
     showMovie();
 
 }
+

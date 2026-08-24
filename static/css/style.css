@@ -1786,3 +1786,590 @@ h1 {
         height: 220px;
     }
 }
+
+
+/* =========================================================
+   SAM DISCOVER — FOUR DIRECTION GUIDE
+   Keeps the original dark SAM card
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   CARD + SIDE LABEL LAYOUT
+--------------------------------------------------------- */
+
+.swipe-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.swipe-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+
+    width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   SWIPE LABELS
+--------------------------------------------------------- */
+
+.swipe-label {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #777782;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+
+    user-select: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.swipe-label-arrow {
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+
+.swipe-label-icon {
+    font-size: 14px;
+
+    line-height: 1;
+}
+
+
+/* ---------------------------------------------------------
+   TOP / BOTTOM
+--------------------------------------------------------- */
+
+.swipe-label-up {
+    margin-bottom: 13px;
+
+    opacity: 0.65;
+}
+
+
+.swipe-label-down {
+    margin-top: 13px;
+
+    opacity: 0.65;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT / RIGHT
+--------------------------------------------------------- */
+
+.swipe-label-left {
+    justify-content: flex-end;
+
+    opacity: 0.65;
+}
+
+
+.swipe-label-right {
+    justify-content: flex-start;
+
+    opacity: 0.65;
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVE SWIPE DIRECTIONS
+   JavaScript adds these classes while dragging.
+--------------------------------------------------------- */
+
+.swipe-guide.direction-left
+.swipe-label-left,
+
+.direction-left
+.swipe-label-left {
+    color: #ff526d;
+
+    opacity: 1;
+
+    transform: translateX(-4px) scale(1.05);
+}
+
+
+.direction-right
+.swipe-label-right {
+    color: #48d597;
+
+    opacity: 1;
+
+    transform: translateX(4px) scale(1.05);
+}
+
+
+.direction-up
+.swipe-label-up {
+    color: #ffc857;
+
+    opacity: 1;
+
+    transform: translateY(-3px) scale(1.06);
+}
+
+
+.direction-down
+.swipe-label-down {
+    color: #9da3b4;
+
+    opacity: 1;
+
+    transform: translateY(3px) scale(1.06);
+}
+
+
+/* ---------------------------------------------------------
+   ORIGINAL DARK CARD
+   Explicitly preserve your existing SAM appearance.
+--------------------------------------------------------- */
+
+.swipe-card {
+    background: #18181f;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.5);
+
+    flex-shrink: 0;
+}
+
+
+/* ---------------------------------------------------------
+   ACTION BUTTONS
+--------------------------------------------------------- */
+
+.swipe-buttons {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-top: 25px;
+}
+
+
+.swipe-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+/* Keep the four buttons visually balanced */
+
+.swipe-button.dislike,
+.swipe-button.like,
+.swipe-button.not-seen {
+    width: 60px;
+    height: 60px;
+}
+
+
+.swipe-button.very-like {
+    width: 68px;
+    height: 68px;
+}
+
+
+/* ---------------------------------------------------------
+   BUTTON COLORS
+--------------------------------------------------------- */
+
+.swipe-button.dislike {
+    color: #ff526d;
+}
+
+
+.swipe-button.like {
+    color: #48d597;
+}
+
+
+.swipe-button.very-like {
+    color: #ffc857;
+}
+
+
+.swipe-button.not-seen {
+    color: #9da3b4;
+}
+
+
+/* ---------------------------------------------------------
+   SWIPE HINT
+--------------------------------------------------------- */
+
+.swipe-hint {
+    margin-top: 17px;
+
+    color: #777782;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+.swipe-hint strong {
+    color: #a4a4ae;
+
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .swipe-card-row {
+        gap: 12px;
+    }
+
+
+    .swipe-label {
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .swipe-label-arrow {
+        font-size: 14px;
+    }
+
+
+    .swipe-card {
+        width: 350px;
+
+        max-width: 70vw;
+    }
+
+
+    .swipe-buttons {
+        gap: 14px;
+    }
+
+
+    .swipe-button.dislike,
+    .swipe-button.like,
+    .swipe-button.not-seen {
+        width: 54px;
+        height: 54px;
+    }
+
+
+    .swipe-button.very-like {
+        width: 62px;
+        height: 62px;
+    }
+
+
+    .swipe-hint {
+        max-width: 320px;
+
+        line-height: 1.8;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .swipe-card-row {
+        gap: 6px;
+    }
+
+
+    .swipe-label {
+        font-size: 8px;
+
+        letter-spacing: 0.7px;
+    }
+
+
+    .swipe-label-arrow {
+        font-size: 12px;
+    }
+
+
+    .swipe-label-left,
+    .swipe-label-right {
+        gap: 3px;
+    }
+
+
+    .swipe-card {
+        width: 310px;
+
+        max-width: 69vw;
+    }
+
+
+    .swipe-buttons {
+        gap: 9px;
+    }
+
+
+    .swipe-button.dislike,
+    .swipe-button.like,
+    .swipe-button.not-seen {
+        width: 48px;
+        height: 48px;
+
+        font-size: 20px;
+    }
+
+
+    .swipe-button.very-like {
+        width: 56px;
+        height: 56px;
+
+        font-size: 22px;
+    }
+
+}
+
+
+
+/* =========================================================
+   SWIPE ACTION BUTTONS
+   Only affects the four buttons below the movie card.
+   Does NOT change the movie card.
+========================================================= */
+
+.swipe-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    width: 100%;
+    margin: 28px auto 0;
+    padding: 0;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+/* Individual button */
+
+.swipe-button {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    background: #18181f;
+    color: #e8e8ed;
+
+    font-size: 23px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        color 0.18s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Hover */
+
+.swipe-button:hover {
+    transform: translateY(-4px);
+    background: #202028;
+    border-color: rgba(255, 255, 255, 0.28);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Press */
+
+.swipe-button:active {
+    transform: translateY(1px) scale(0.94);
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.3);
+
+    transition-duration: 0.08s;
+}
+
+
+/* Keyboard accessibility */
+
+.swipe-button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.65);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   BUTTON TYPES
+========================================================= */
+
+
+/* Dislike */
+
+.swipe-button.dislike {
+    color: #f50018;
+}
+
+.swipe-button.dislike:hover {
+    background: rgba(255, 107, 122, 0.10);
+    border-color: rgba(255, 107, 122, 0.45);
+}
+
+
+/* Not Seen */
+
+.swipe-button.not-seen {
+    color: #8db9ff;
+}
+
+.swipe-button.not-seen:hover {
+    background: rgba(141, 185, 255, 0.10);
+    border-color: rgba(141, 185, 255, 0.45);
+}
+
+
+/* Very Liked */
+
+.swipe-button.very-like {
+    color: #ffc857;
+}
+
+.swipe-button.very-like:hover {
+    background: rgba(255, 200, 87, 0.10);
+    border-color: rgba(255, 200, 87, 0.45);
+}
+
+
+/* Like */
+
+.swipe-button.like {
+    color: #00e40b;
+}
+
+.swipe-button.like:hover {
+    background: rgba(255, 113, 133, 0.10);
+    border-color: rgba(255, 113, 133, 0.45);
+}
+
+
+/* =========================================================
+   SWIPE HINT
+========================================================= */
+
+.swipe-hint {
+    margin: 18px auto 0;
+
+    text-align: center;
+
+    color: #777783;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.swipe-hint strong {
+    color: #a5a5b0;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .swipe-buttons {
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .swipe-button {
+        width: 54px;
+        height: 54px;
+
+        font-size: 20px;
+    }
+
+    .swipe-hint {
+        max-width: 90%;
+        margin-top: 15px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* Small phones */
+
+@media (max-width: 380px) {
+
+    .swipe-buttons {
+        gap: 8px;
+    }
+
+    .swipe-button {
+        width: 49px;
+        height: 49px;
+
+        font-size: 18px;
+    }
+
+    .swipe-hint {
+        font-size: 11px;
+    }
+}

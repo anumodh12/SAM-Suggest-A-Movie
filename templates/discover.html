@@ -1,9 +1,15 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Discover — SAM</title>
 
@@ -11,90 +17,112 @@
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
+
 </head>
+
 
 <body>
 
-    <nav class="navbar">
 
-        <div class="logo">
-            SAM<span>.</span>
+<nav class="navbar">
+
+    <div class="logo">
+        SAM<span>.</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/discover">
+            Discover
+        </a>
+
+        <a href="/recommendations-page">
+            Recommendations
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="discover-page">
+
+
+    <div class="discover-header">
+
+        <p class="eyebrow">
+            TELL SAM WHAT YOU LIKE
+        </p>
+
+        <h1>
+            Find your
+            <span>next movie.</span>
+        </h1>
+
+        <p>
+            Swipe the card to tell SAM what you think.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         DISCOVER / SWIPE AREA
+    ================================================== -->
+
+    <div class="swipe-area">
+
+
+        <!-- VERY LIKED -->
+
+        <div class="swipe-label swipe-label-up">
+
+            <span class="swipe-label-icon">
+                ★
+            </span>
+
+            <span>
+                VERY LIKED
+            </span>
+
         </div>
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/discover">Discover</a>
-            <a href="/recommendations-page">
-                Recommendations
-            </a>
-        </div>
-
-    </nav>
 
 
-    <main class="discover-page">
+        <!-- CARD + SIDE LABELS -->
 
-        <div class="discover-header">
-
-            <p class="eyebrow">
-                TELL SAM WHAT YOU LIKE
-            </p>
-
-            <h1>
-                Find your
-                <span>next movie.</span>
-            </h1>
-
-            <p>
-                Swipe right if you'd watch it.
-                Swipe left if it's not for you.
-            </p>
-
-        </div>
+        <div class="swipe-card-row">
 
 
-        <!--
-            TEST COMPLETE STATE
+            <!-- DISLIKE -->
 
-            This is hidden normally.
-            swipe.js can show it when all 20
-            movies have been rated.
-        -->
+            <div class="swipe-label swipe-label-left">
 
-        <div
-            id="test-complete"
-            class="test-complete"
-            style="display: none;"
-        >
+                <span class="swipe-label-arrow">
+                    ←
+                </span>
 
-            <h2>
-                You're all caught up.
-            </h2>
+                <span>
+                    DISLIKE
+                </span>
 
-            <p>
-                SAM has learned enough about your taste.
-            </p>
-
-            <a
-                href="/recommendations-page"
-                class="recommendations-button"
-            >
-                See My Recommendations
-            </a>
-
-        </div>
+            </div>
 
 
-        <div
-            id="swipe-container"
-            class="swipe-area"
-        >
+
+            <!-- MOVIE CARD -->
 
             <div
                 id="movie-card"
                 class="swipe-card"
-                data-movie-id=""
+                data-movie-id="{{ movies[0].id if movies else '' }}"
             >
+
 
                 <div
                     class="movie-poster"
@@ -116,6 +144,7 @@
                     </div>
 
                 </div>
+
 
 
                 <div class="movie-details">
@@ -148,59 +177,143 @@
             </div>
 
 
-            <div class="swipe-buttons">
 
-                <button
-                    type="button"
-                    id="dislike-button"
-                    class="swipe-button dislike"
-                    aria-label="Dislike"
-                >
-                    ✕
-                </button>
+            <!-- LIKE -->
 
+            <div class="swipe-label swipe-label-right">
 
-                <button
-                    type="button"
-                    id="like-button"
-                    class="swipe-button like"
-                    aria-label="Like"
-                >
-                    ♥
-                </button>
+                <span>
+                    LIKE
+                </span>
+
+                <span class="swipe-label-arrow">
+                    →
+                </span>
 
             </div>
 
 
-            <p class="swipe-hint">
-                ← Not for me &nbsp;&nbsp;&nbsp; Like →
-            </p>
+        </div>
+
+
+
+        <!-- NOT SEEN -->
+
+        <div class="swipe-label swipe-label-down">
+
+            <span>
+                NOT SEEN
+            </span>
+
+            <span class="swipe-label-arrow">
+                ↓
+            </span>
 
         </div>
 
-    </main>
 
 
-    <!--
-        IMPORTANT:
+        <!-- =================================================
+             ACTION BUTTONS
+        ================================================== -->
 
-        Flask sends the complete discovery movie list
-        to JavaScript.
+        <div class="swipe-buttons">
 
-        JavaScript controls which movie is currently
-        displayed and moves to the next movie after
-        every successful swipe.
-    -->
 
-    <script>
+            <button
+                type="button"
+                id="dislike-button"
+                class="swipe-button dislike"
+                aria-label="Dislike movie"
+                title="Dislike"
+            >
+                ✕
+            </button>
+
+
+
+            <button
+                type="button"
+                id="not-seen-button"
+                class="swipe-button not-seen"
+                aria-label="Not seen"
+                title="Not seen"
+            >
+                ↓
+            </button>
+
+
+
+            <button
+                type="button"
+                id="very-like-button"
+                class="swipe-button very-like"
+                aria-label="Very liked"
+                title="Very liked"
+            >
+                ★
+            </button>
+
+
+
+            <button
+                type="button"
+                id="like-button"
+                class="swipe-button like"
+                aria-label="Like movie"
+                title="Like"
+            >
+                ♥
+            </button>
+
+
+        </div>
+
+
+
+        <p class="swipe-hint">
+
+          
+            <strong>←</strong> Dislike
+            &nbsp;&nbsp;·&nbsp;&nbsp;
+
+            <strong>↓</strong> Not Seen
+            &nbsp;&nbsp;·&nbsp;&nbsp;
+
+            <strong>↑</strong>  Very Liked
+            &nbsp;&nbsp;·&nbsp;&nbsp;
+
+            Like <strong>→</strong>
+
+        </p>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     MOVIE DATA
+====================================================== -->
+
+<script>
+
     const movies = {{ movies | tojson }};
-    const testComplete = {{ test_complete | default(false) | tojson }};
-    </script>
+
+    const testComplete =
+        {{ test_complete | default(false) | tojson }};
+
+</script>
 
 
-    <script
-        src="{{ url_for('static', filename='js/swipe.js') }}"
-    ></script>
+
+<script
+    src="{{ url_for('static', filename='js/swipe.js') }}"
+></script>
+
 
 </body>
 
