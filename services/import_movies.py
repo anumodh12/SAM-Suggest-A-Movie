@@ -342,7 +342,7 @@ def import_movies(pages=5):
 if __name__ == "__main__":
 
     import_movies(
-        pages=5
+        pages=25
     )
 
 
