@@ -52,16 +52,14 @@ def save_json_list(items):
 # IMPORT MOVIES
 # --------------------------------------------------
 
-def import_movies(pages=5):
+def import_movies(start_page=23, end_page=25):
 
     imported = 0
-
     updated = 0
-
 
     with app.app_context():
 
-        for page in range(1, pages + 1):
+        for page in range(start_page, end_page + 1):
 
             print()
             print(
@@ -340,9 +338,9 @@ def import_movies(pages=5):
 # --------------------------------------------------
 
 if __name__ == "__main__":
-
     import_movies(
-        pages=25
+        start_page=23,
+        end_page=25
     )
 
 

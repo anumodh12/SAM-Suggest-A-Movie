@@ -1957,7 +1957,7 @@ def recommendations():
     # --------------------------------------------------
 
     recommendations_list = (
-        scored_movies[:60]
+        scored_movies[:61]
     )
 
 

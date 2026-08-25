@@ -190,3 +190,4 @@ class Swipe(db.Model):
             lazy=True
         )
     )
+    

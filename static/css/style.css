@@ -2373,3 +2373,98 @@ h1 {
         font-size: 11px;
     }
 }
+
+
+
+/* -----------------------------------------
+   RETAKE TEST ACTION
+----------------------------------------- */
+
+.recommendation-actions {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.retake-test-hint {
+    margin: 0;
+    color: #a7a7b2;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.retake-test-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Arrow */
+.retake-test-button::after {
+    content: "↗";
+    font-size: 1rem;
+    transition: transform 0.25s ease;
+}
+
+/* Hover */
+.retake-test-button:hover {
+    background: rgba(255, 45, 91, 0.12);
+    border-color: rgba(255, 45, 91, 0.55);
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(255, 45, 91, 0.08);
+}
+
+.retake-test-button:hover::after {
+    transform: translate(2px, -2px);
+}
+
+/* Press */
+.retake-test-button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+
+/* -----------------------------------------
+   MOBILE
+----------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .recommendation-actions {
+        margin-top: 22px;
+    }
+
+    .retake-test-button {
+        padding: 9px 16px;
+        font-size: 0.85rem;
+    }
+
+}
